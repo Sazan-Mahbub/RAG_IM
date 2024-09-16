@@ -1,8 +1,8 @@
-# RAG_IM
+# RAG-IM
 This repository contains the official implementation of RAG-IM (Retrieval Augmented Generation of Interpretable Models). 
 
 ## Download raw data
-Please download the original dataset from [here](https://physionet.org/content/mimiciv/3.0/). The following files are required:
+Please download the MIMIC-IV dataset from the [official source](https://physionet.org/content/mimiciv/2.2/). The following files are required:
 - HOSP.procedures_icd.csv
 - HOSP.d_icd_procedures.csv
 - HOSP.d_icd_diagnoses.csv
