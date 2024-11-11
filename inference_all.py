@@ -94,7 +94,7 @@ test_set = CLLMdataset(split='test', X=X_tests_1, Y=y_tests_1,
                                   logreg_models=logRegModel_weights,
                                   nbr_indices=nbr_indices,
                                   context_idx=0)
-test_loader = DataLoader(test_set, batch_size=batch_size*4, shuffle=False, num_workers=1)
+test_loader = DataLoader(test_set, batch_size=batch_size*4, shuffle=False, num_workers=0)
 
 
 def eval_all(start, end, verbose=0):

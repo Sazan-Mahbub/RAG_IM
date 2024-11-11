@@ -93,7 +93,7 @@ train_set = CLLMdataset(split='train', X=X_trains_1, Y=y_trains_1,
                         logreg_models=logRegModel_weights,
                         nbr_indices=nbr_indices,
                         context_idx=None)
-train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=10)
+train_loader = DataLoader(train_set, batch_size=batch_size, shuffle=True, num_workers=0)
 
 
 model = Net(c_in=768, m_in=218, embed_dim=512, attn_dropout=0.0, num_attn_heads=4, num_blocks=3).to(device)

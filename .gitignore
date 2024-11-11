@@ -2,3 +2,5 @@ __pycache__/
 data_v2/
 gitpush.sh
 abc/
+*.pth
+__MACOSX/
