@@ -1,5 +1,7 @@
 # RAG-IM
-Implementation of RAG-IM (Retrieval Augmented Generation of Interpretable Models). **CAUTION:** The codebase is actively being modified.
+Implementation of RAG-IM (Retrieval Augmented Generation of Interpretable Models). 
+
+**CAUTION:** The codebase is actively being modified.
 
 ## Download raw data
 Please download the MIMIC-IV dataset from the [official source](https://physionet.org/content/mimiciv/2.2/). The following files are required:
