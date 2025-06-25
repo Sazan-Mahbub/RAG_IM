@@ -1,5 +1,5 @@
 # RAG-IM
-Implementation of [RAG-IM (Retrieval Augmented Generation of Interpretable Models)](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)). 
+Implementation of our [RAG-IM (Retrieval Augmented Generation of Interpretable Models)](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)) paper. 
 
 **CAUTION:** The codebase is being actively modified.
 
