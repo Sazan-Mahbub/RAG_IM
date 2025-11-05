@@ -2,3 +2,10 @@ __pycache__/
 data_v2/
 gitpush.sh
 abc/
+*.pyc
+.env
+.vscode/
+.DS_Store
+.idea/
+*.pth
+*.pt

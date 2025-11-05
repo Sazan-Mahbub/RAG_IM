@@ -6,17 +6,17 @@ from datamodule import *
 import os
 from tqdm import tqdm
 data_dir = "./data_v2"
-home_dir = "./"
 result_dir = "./results"
+# home_dir = "./"
 
-sorted_sub_hadm_df = pd.read_csv(f'{data_dir}/sub_hadm_ids_sorted.csv').values.squeeze()
-sorted_sub_hadm = list(sorted_sub_hadm_df)
-sub_hadm_id_to_ind = {(sub_id, hadm_id) : i for i, (sub_id, hadm_id) in enumerate(sorted_sub_hadm)}
+# sorted_sub_hadm_df = pd.read_csv(f'{data_dir}/sub_hadm_ids_sorted.csv').values.squeeze()
+# sorted_sub_hadm = list(sorted_sub_hadm_df)
+# sub_hadm_id_to_ind = {(sub_id, hadm_id) : i for i, (sub_id, hadm_id) in enumerate(sorted_sub_hadm)}
 
-df_1stepNorm = pd.read_csv(f'{data_dir}/feature_matrix_1stepNorm.csv')
-df_2stepNorm = pd.read_csv(f'{data_dir}/feature_matrix_2stepNorm.csv')
-feature_matrix_1stepNorm = df_1stepNorm.values
-feature_matrix_2stepNorm = df_2stepNorm.values
+# df_1stepNorm = pd.read_csv(f'{data_dir}/feature_matrix_1stepNorm.csv')
+# df_2stepNorm = pd.read_csv(f'{data_dir}/feature_matrix_2stepNorm.csv')
+# feature_matrix_1stepNorm = df_1stepNorm.values
+# feature_matrix_2stepNorm = df_2stepNorm.values
 
 logRegModels = pickle.load(open(f'{data_dir}/decoupled_model_1StepNorm.pkl', 'rb'))
 
@@ -30,52 +30,61 @@ logRegModel_weights = np.array(logRegModel_weights)
 # exit()
 
 
-sorted_procedures_map = {}
-# Opening JSON file
-with open(f'{data_dir}/sorted_procedures_map.json', 'r') as openfile:
-    # Reading from json file
-    sorted_procedures_map = json.load(openfile)
+# sorted_procedures_map = {}
+# # Opening JSON file
+# with open(f'{data_dir}/sorted_procedures_map.json', 'r') as openfile:
+#     # Reading from json file
+#     sorted_procedures_map = json.load(openfile)
 
 
-# In[12]:
+# # In[12]:
 
 
-sorted_procedures_list = list(sorted_procedures_map.items())
-# print(sorted_procedures_list[0])
+# sorted_procedures_list = list(sorted_procedures_map.items())
+# # print(sorted_procedures_list[0])
 
 
-# In[13]:
+# # In[13]:
 
 
-len(sorted_procedures_list)
+# len(sorted_procedures_list)
 
 
-# In[14]:
+# # In[14]:
 
 
-min_sample_size = 1
-selected_procs = []
-i = 0
-while(i < len(sorted_procedures_list) and sorted_procedures_list[i][1]['count'] >= min_sample_size):
-  proc = sorted_procedures_list[i][0]
-  selected_procs.append(proc)
-  i += 1
+# min_sample_size = 1
+# selected_procs = []
+# i = 0
+# while(i < len(sorted_procedures_list) and sorted_procedures_list[i][1]['count'] >= min_sample_size):
+#   proc = sorted_procedures_list[i][0]
+#   selected_procs.append(proc)
+#   i += 1
 
 
-# In[15]:
+# # In[15]:
 
 
-print(f"number of classes: {len(selected_procs)}")
+# print(f"number of classes: {len(selected_procs)}")
 
 
-# In[26]:
+# # In[26]:
 
 
 X_tests_1, y_tests_1, X_trains_1, y_trains_1, X_tests_2, y_tests_2, X_trains_2, y_trains_2 = pickle.load(open(f'{data_dir}/all_preprocessed_data_ALL.pkl', 'rb'))
+# X_tests_1, y_tests_1, X_trains_1, y_trains_1, X_tests_2, y_tests_2, X_trains_2, y_trains_2 = pickle.load(open(f'{data_dir}/all_preprocessed_data.pkl', 'rb'))
 
-bert_class_embeddings_df = pd.read_csv(f'{data_dir}/bert_class_embeddings.csv')
+bert_class_embeddings_df = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings.csv')
+bert_class_embeddings_df2 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings1000_2000.csv')
+bert_class_embeddings_df3 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings2000_3000.csv')
+bert_class_embeddings_df4 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings3000_4000.csv')
+bert_class_embeddings_df5 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings4000_5000.csv')
+bert_class_embeddings_df6 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings5000_6000.csv')
+bert_class_embeddings_df7 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings6000_7000.csv')
+bert_class_embeddings_df8 = pd.read_csv(f'{data_dir}/metadata/bert_class_embeddings7000_7487.csv')
+bert_class_embeddings_df = pd.concat([bert_class_embeddings_df, bert_class_embeddings_df2, bert_class_embeddings_df3, bert_class_embeddings_df4, bert_class_embeddings_df5, bert_class_embeddings_df6, bert_class_embeddings_df7, bert_class_embeddings_df8], axis=0).reset_index(drop=True)
 bert_class_embeddings = bert_class_embeddings_df.values[:len(X_tests_1)]
-assert bert_class_embeddings.shape[0] == len(X_tests_1)
+assert bert_class_embeddings.shape[0] == len(X_tests_1), str(bert_class_embeddings.shape[0]) + '!=' + str(len(X_tests_1))
 
 
 # In[133]:

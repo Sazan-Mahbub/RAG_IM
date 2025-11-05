@@ -1,0 +1,66 @@
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.3.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+(4412, 768)
+epoch: 0
+0it [00:00, ?it/s]1it [00:01,  1.63s/it]5it [00:01,  3.77it/s]9it [00:01,  7.50it/s]13it [00:01, 11.14it/s]18it [00:02, 16.83it/s]22it [00:02, 19.57it/s]27it [00:02, 24.07it/s]32it [00:02, 29.20it/s]37it [00:02, 32.82it/s]43it [00:02, 37.11it/s]44it [00:02, 15.89it/s]
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Split: train
+	accuracy:  0.6565276518585675 (baseline: 0.9953989120580236)
+	precision:  [0.62810839 0.70093512] (baseline: [0.99496964 0.99582842])
+	recall:  [0.76645349 0.5467313 ] (baseline: [0.9958271  0.99497123])
+	f1:  [0.69041879 0.61430389] (baseline: [0.99539818 0.99539964])
+	support:  [22047 22073] (baseline: [22047 22073])
+	Avg loss: 0.7712953022935174
+
+epoch: 1
+0it [00:00, ?it/s]2it [00:00, 14.26it/s]4it [00:00,  9.60it/s]6it [00:00, 12.52it/s]10it [00:00, 20.16it/s]14it [00:00, 25.00it/s]17it [00:00, 26.10it/s]22it [00:00, 32.05it/s]26it [00:01, 32.47it/s]32it [00:01, 38.29it/s]37it [00:01, 41.20it/s]43it [00:01, 43.89it/s]44it [00:01, 29.25it/s]
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Split: train
+	accuracy:  0.686219401631913 (baseline: 0.9961922030825022)
+	precision:  [0.65958032 0.72252571] (baseline: [0.99531903 0.99706095])
+	recall:  [0.76413548 0.60896452] (baseline: [0.99704088 0.99535073])
+	f1:  [0.70801873 0.66090237] (baseline: [0.99617921 0.99620511])
+	support:  [21966 22154] (baseline: [21966 22154])
+	Avg loss: 0.7343538538976149
+
+epoch: 2
+0it [00:00, ?it/s]1it [00:00,  7.58it/s]3it [00:00,  9.83it/s]5it [00:00, 12.80it/s]9it [00:00, 20.00it/s]12it [00:00, 20.36it/s]15it [00:00, 22.47it/s]20it [00:00, 27.33it/s]24it [00:01, 28.81it/s]29it [00:01, 32.91it/s]35it [00:01, 37.79it/s]40it [00:01, 40.08it/s]44it [00:01, 28.04it/s]
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Split: train
+	accuracy:  0.6988893925657298 (baseline: 0.9963735267452403)
+	precision:  [0.67589412 0.72825806] (baseline: [0.99564072 0.99710381])
+	recall:  [0.76057299 0.63759602] (baseline: [0.99708959 0.995662  ])
+	f1:  [0.71573767 0.67991808] (baseline: [0.99636463 0.99638238])
+	support:  [21990 22130] (baseline: [21990 22130])
+	Avg loss: 0.6922835694117979
+
+epoch: 3
+0it [00:00, ?it/s]2it [00:00,  9.62it/s]4it [00:00, 10.96it/s]6it [00:00, 12.40it/s]9it [00:00, 17.12it/s]13it [00:00, 23.08it/s]18it [00:00, 30.30it/s]22it [00:00, 31.96it/s]26it [00:01, 33.50it/s]31it [00:01, 36.73it/s]36it [00:01, 39.32it/s]41it [00:01, 41.45it/s]44it [00:01, 28.89it/s]
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/torch/utils/data/dataloader.py:624: UserWarning: This DataLoader will create 10 worker processes in total. Our suggested max number of worker in current system is 4, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(
+Split: train
+	accuracy:  0.7124433363553944 (baseline: 0.996078875793291)
+	precision:  [0.69304448 0.73628372] (baseline: [0.99556601 0.9965937 ])
+	recall:  [0.76357625 0.66122227] (baseline: [0.99660311 0.99555374])
+	f1:  [0.72660274 0.69673718] (baseline: [0.99608429 0.99607345])
+	support:  [22079 22041] (baseline: [22079 22041])
+	Avg loss: 0.6966308558529074
+
+epoch: 4
+0it [00:00, ?it/s]1it [00:00,  6.09it/s]3it [00:00,  9.76it/s]5it [00:00, 10.93it/s]9it [00:00, 18.07it/s]13it [00:00, 21.95it/s]18it [00:00, 27.28it/s]22it [00:00, 29.98it/s]26it [00:01, 30.65it/s]31it [00:01, 34.12it/s]36it [00:01, 37.87it/s]41it [00:01, 39.40it/s]44it [00:01, 27.72it/s]
+Split: train
+	accuracy:  0.7194922937443337 (baseline: 0.9956482320942883)
+	precision:  [0.70111983 0.74236719] (baseline: [0.99496629 0.99634202])
+	recall:  [0.7721217  0.66610355] (baseline: [0.99639932 0.99488631])
+	f1:  [0.73490982 0.70217067] (baseline: [0.99568229 0.99561363])
+	support:  [22218 21902] (baseline: [22218 21902])
+	Avg loss: 0.6839380061084573
+

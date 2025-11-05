@@ -1,0 +1,162 @@
+/data/user_data/smahbub/miniconda3/envs/rail/lib/python3.10/site-packages/sklearn/base.py:442: InconsistentVersionWarning: Trying to unpickle estimator LogisticRegression from version 1.3.2 when using version 1.7.2. This might lead to breaking code or invalid results. Use at your own risk. For more info please refer to:
+https://scikit-learn.org/stable/model_persistence.html#security-maintainability-limitations
+  warnings.warn(
+Starting evaluation on different task groups...
+
+
+Task IDs in: [0, 342)
+
+RAG-IM:
+	 precision
+		Weighted mean:	 0.7795609606567284
+		 Mean:		 0.7703670380616359
+	 recall
+		Weighted mean:	 0.7411269175975058
+		 Mean:		 0.7497746281976804
+	 f1
+		Weighted mean:	 0.7549272390855064
+		 Mean:		 0.7543096125514266
+	 accuracy
+		Weighted mean:	 0.7646232940350587
+		 Mean:		 0.7611290030328977
+
+Baseline:
+	 precision
+		Weighted mean:	 0.7998827749621309
+		Mean:		 0.7638973874696469
+	 recall
+		Weighted mean:	 0.7916709681415564
+		Mean:		 0.764105494126499
+	 f1
+		Weighted mean:	 0.7946691372647599
+		Mean:		 0.7610160036942033
+	 accuracy
+		Weighted mean:	 0.7963475316416493
+		Mean:		 0.7615071657938352
+
+
+Task IDs in: [342, 1522)
+
+RAG-IM:
+	 precision
+		Weighted mean:	 0.7174491427226514
+		 Mean:		 0.7233179943944941
+	 recall
+		Weighted mean:	 0.6761646709203741
+		 Mean:		 0.6766179952349004
+	 f1
+		Weighted mean:	 0.6811482052049438
+		 Mean:		 0.6816819164020194
+	 accuracy
+		Weighted mean:	 0.7022987501092561
+		 Mean:		 0.7042731021474375
+
+Baseline:
+	 precision
+		Weighted mean:	 0.6985271971395823
+		Mean:		 0.695256484860954
+	 recall
+		Weighted mean:	 0.6789616292282143
+		Mean:		 0.6688530946908617
+	 f1
+		Weighted mean:	 0.6713058990654016
+		Mean:		 0.6597183916254279
+	 accuracy
+		Weighted mean:	 0.6806660256970545
+		Mean:		 0.6715322689074168
+
+
+Task IDs in: [1522, 2307)
+
+RAG-IM:
+	 precision
+		Weighted mean:	 0.7323118975686951
+		 Mean:		 0.7311555959963603
+	 recall
+		Weighted mean:	 0.6865558912386707
+		 Mean:		 0.6869426751592357
+	 f1
+		Weighted mean:	 0.6819163527811564
+		 Mean:		 0.6816932748779883
+	 accuracy
+		Weighted mean:	 0.7137462235649547
+		 Mean:		 0.7134288747346074
+
+Baseline:
+	 precision
+		Weighted mean:	 0.6001177888073659
+		Mean:		 0.5974613284804368
+	 recall
+		Weighted mean:	 0.5755287009063444
+		Mean:		 0.5745222929936306
+	 f1
+		Weighted mean:	 0.5456081913219375
+		Mean:		 0.54367046258766
+	 accuracy
+		Weighted mean:	 0.6023413897280967
+		Mean:		 0.6015923566878981
+
+
+Task IDs in: [2307, 4412)
+	[Few-Shot Regime]
+
+RAG-IM:
+	 precision
+		Weighted mean:	 0.652500536595836
+		 Mean:		 0.6372129849564528
+	 recall
+		Weighted mean:	 0.6851255634256278
+		 Mean:		 0.6852731591448931
+	 f1
+		Weighted mean:	 0.6457179652285898
+		 Mean:		 0.6402058590657165
+	 accuracy
+		Weighted mean:	 0.7028332260141661
+		 Mean:		 0.7046318289786223
+
+Baseline:
+	 precision
+		Weighted mean:	 0.4050225370251127
+		Mean:		 0.3859857482185273
+	 recall
+		Weighted mean:	 0.53026400515132
+		Mean:		 0.5285035629453682
+	 f1
+		Weighted mean:	 0.43386992916934963
+		Mean:		 0.4239746634996041
+	 accuracy
+		Weighted mean:	 0.5544108177720541
+		Mean:		 0.55
+
+
+Task IDs in: [4412, 7487)
+	[Zero-Shot Regime]
+
+RAG-IM:
+	 precision
+		Weighted mean:	 0.5822764227642276
+		 Mean:		 0.5822764227642276
+	 recall
+		Weighted mean:	 0.6734959349593496
+		 Mean:		 0.6734959349593496
+	 f1
+		Weighted mean:	 0.6126829268292683
+		 Mean:		 0.6126829268292683
+	 accuracy
+		Weighted mean:	 0.7021138211382114
+		 Mean:		 0.7021138211382114
+
+Baseline:
+	 precision
+		Weighted mean:	 0.0
+		Mean:		 0.0
+	 recall
+		Weighted mean:	 0.0
+		Mean:		 0.0
+	 f1
+		Weighted mean:	 0.0
+		Mean:		 0.0
+	 accuracy
+		Weighted mean:	 0.5
+		Mean:		 0.5
+Done infererence!

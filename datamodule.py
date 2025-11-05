@@ -73,7 +73,7 @@ class CLLMdataset(Dataset):
 
         self.X = X
         self.Y = Y
-        self.context_encoding = context_encoding[:len(X)].astype(np.float32)
+        self.context_encoding = context_encoding[:len(X)].astype(np.float32) ## assumes sorted tasks, embeddings, logReg models
         self.logreg_models = logreg_models.astype(np.float32)
         self.nbr_indices = nbr_indices
         
@@ -84,9 +84,8 @@ class CLLMdataset(Dataset):
             self.baseline_accuracies = (y_pred_baseline == Y[self.context_idx]).mean()
             # print(f'Baseline accuracy for task {self.context_idx} is {self.baseline_accuracies}')
 
-        
-        assert len(self.X) == self.context_encoding.shape[0]
-        assert len(self.Y) == self.context_encoding.shape[0]
+        assert len(self.X) == self.context_encoding.shape[0], str(len(self.X)) + '!=' + str(self.context_encoding.shape[0])
+        assert len(self.Y) == self.context_encoding.shape[0], str(len(self.Y)) + '!=' + str(self.context_encoding.shape[0]) 
 
         self.REPEATE_COUNT = 10
 
@@ -96,8 +95,6 @@ class CLLMdataset(Dataset):
         if self.split == 'train':
             return self.context_encoding.shape[0] * self.REPEATE_COUNT  ## NOTE: iterate over the tasks/contexts during training.
         else:
-            if self.X[self.context_idx].shape[0] == 2:
-                return 2
             return self.X[self.context_idx].shape[0]  ## NOTE: iterate over the samples within the task/context during testing/validation.
 
     def get_one_sample(self, context_idx, sample_idx):
