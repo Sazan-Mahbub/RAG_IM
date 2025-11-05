@@ -1,7 +1,19 @@
-# RAG-IM
-Implementation of our [RAG-IM (Retrieval Augmented Generation of Interpretable Models)](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)) paper. 
+**CAUTION:** The codebase is being actively modified. 
 
-**CAUTION:** The codebase is being actively modified.
+# RAG-IM
+Implementation of our NeurIPS 2024 workshop paper [RAG-IM (Retrieval Augmented Generation of Interpretable Models)](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)). 
+
+## Citation
+If you use any part of this repository, please cite: 
+```
+@inproceedings{mahbubone,
+  title={From one to zero: Rag-im adapts language models for interpretable zero-shot clinical predictions},
+  author={Mahbub, Sazan and Ellington, Caleb and Alinejad, Sina and Wen, Kevin and Luo, Yingtao and Lengerich, Ben and Xing, Eric P},
+  booktitle={NeurIPS 2024 workshop on Adaptive Foundation Models: Evolving AI for Personalized and Efficient Learning}
+}
+```
+
+
 
 ## Download raw data
 Please download the MIMIC-IV dataset from the [official source](https://physionet.org/content/mimiciv/2.2/). The following files are required:
