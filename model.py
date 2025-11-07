@@ -66,12 +66,16 @@ class Net(nn.Module):
             query = (query + self.bottleneck[b_idx](attn_output)) / 2   # NOTE: (N x 1 x E)
 
         attn_output = self.linear_out(attn_output)   # NOTE: (N x 1 x m_in)
+        mu_p = attn_output
 
         ## TODO: debug only
         # attn_output = F.tanh(attn_output) * 0.5 + F.tanh(self_model) * 0.5
-        update_probab = self.update_gate #self.update_gate(torch.cat([attn_output, self_model], -1))
-        attn_output = attn_output * (update_probab) + self_model * (1 - update_probab) ## the mean of the approximate posterior, mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
+        _alpha_ = self.update_gate #self.update_gate(torch.cat([attn_output, self_model], -1))
+        mu_q = attn_output = (_alpha_) * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior, mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
 
+        ## for a proper ELBO, the followings will be included:
+        # 
+        
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
         y_pred_logits = torch.diag(attn_output.squeeze(1) @ x.T).view(-1)
         y_pred = F.sigmoid(y_pred_logits)
