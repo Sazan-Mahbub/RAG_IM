@@ -66,7 +66,7 @@ class Net(nn.Module):
 
     def forward(self, c, x, y, self_model, nbr_models, nbr_embs, sample_theta_t, use_posterior_for_theta):
         assert sample_theta_t in {True, False}  ## we are more interested in sample_theta_t=True
-        assert use_posterior_for_theta in {True, False}  ## set to False if the task is data scarse.
+        assert use_posterior_for_theta in {True, False}  ## we 'may' set to False if the task is data scarse, but not a mendate. 
         self_model = self_model.unsqueeze(1)
         query = c.unsqueeze(1) #torch.cat([self_model, c], -1)  ## assumption: for a new task, we may not have a linear model, or we may have a very bad one
         key = torch.cat([nbr_models, nbr_embs], -1)  ## assumption: we will choose neighbors that have high confidense (probably saw more training samples!)
