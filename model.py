@@ -64,7 +64,8 @@ class Net(nn.Module):
         self.update_gate = torch.nn.Parameter(torch.full((m_in,), 0.5, dtype=torch.float32))
         # self.linear_out = nn.Linear(embed_dim, m_in)
 
-    def forward(self, c, x, y, self_model, nbr_models, nbr_embs):
+    def forward(self, c, x, y, self_model, nbr_models, nbr_embs, sample_theta_t):
+        assert sample_theta_t in {True, False}
         self_model = self_model.unsqueeze(1)
         query = c.unsqueeze(1) #torch.cat([self_model, c], -1)  ## assumption: for a new task, we may not have a linear model, or we may have a very bad one
         key = torch.cat([nbr_models, nbr_embs], -1)  ## assumption: we will choose neighbors that have high confidense (probably saw more training samples!)
@@ -94,7 +95,10 @@ class Net(nn.Module):
         mu_q = _alpha_ * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior q(theta_t|.), mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
 
         ### ---- Reparameterization (VAE-style) ----
-        _eps_ = torch.randn_like(mu_q)         # ε ~ N(0, I) with same shape as mu_q
+        if sample_theta_t:
+            _eps_ = torch.randn_like(mu_q)         # ε ~ N(0, I) with same shape as mu_q
+        else:
+            _eps_ = 0
         theta_t = mu_q + Sigma_q * _eps_       # sample from q(theta_t|...) = N(mu_q, Sigma_q^2)
         
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
