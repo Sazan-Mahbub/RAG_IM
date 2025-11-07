@@ -107,7 +107,7 @@ class Net(nn.Module):
         KL_theta = 0.5 * torch.sum(((mu_q - mu_p) ** 2) / (Sigma_p ** 2), dim=-1)  # sum over m_in
         KL_theta = KL_theta.mean()  # average over batch if desired
 
-        total_loss = bce_loss + 0.1 * KL_theta ## NOTE: since we are doing monte carlo sampling for the bce_loss during training, we should down-weight the KL-div to avoid collapsing on the same distrib for q and p. 
+        total_loss = bce_loss + 0.1 * KL_theta ## NOTE: we should down-weight the KL-div to avoid collapsing on the same distrib for q and p. 
         
         return {
             'y_pred': y_pred, 
