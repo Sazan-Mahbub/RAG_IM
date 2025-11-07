@@ -107,7 +107,7 @@ class Net(nn.Module):
         KL_theta = 0.5 * torch.sum(((mu_q - mu_p) ** 2) / (Sigma_p ** 2), dim=-1)  # sum over m_in
         KL_theta = KL_theta.mean()  # average over batch if desired
 
-        total_loss = bce_loss + 0.1 * KL_theta ## NOTE: we should down-weight the KL-div to avoid collapsing on the same distrib for q(theta_t|.) and p(theta_t|.) .
+        total_loss = bce_loss + 0.1 * KL_theta ## NOTE: we should down-weight the KL-div to avoid collapsing on the same distrib for q(theta_t|.) and p(theta_t|.) . Here the scale is beta^2 = 0.1. We can safely assume the means mu_p and mu_q have a common factor beta, so the actual KL-divergence is scaled by beta^2. This is mathematically more rigid, less of a "blind" assumption to scale down KL-div.
         
         return {
             'y_pred': y_pred, 
