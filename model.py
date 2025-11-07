@@ -107,7 +107,9 @@ class Net(nn.Module):
         KL_theta = 0.5 * torch.sum(((mu_q - mu_p) ** 2) / (Sigma_p ** 2), dim=-1)  # sum over m_in
         KL_theta = KL_theta.mean()  # average over batch if desired
 
-        return y_pred, bce_loss
+        KL_I = ?
+        
+        return y_pred, bce_loss, KL_theta, KL_I
 
 
 
