@@ -34,6 +34,29 @@ class Net(nn.Module):
                 # nn.ELU(inplace=True),
             ) for _ in range(num_blocks)
         ])
+        
+        self.mu_p_layer = nn.Sequential(
+                nn.Linear(embed_dim, embed_dim//2),
+                nn.Dropout(attn_dropout),
+                nn.ELU(inplace=True),
+                nn.Linear(embed_dim//2, embed_dim),
+                nn.Dropout(attn_dropout),
+                nn.ELU(inplace=True),
+                # nn.Linear(embed_dim, m_in),
+                # nn.Dropout(attn_dropout),
+                # nn.ELU(inplace=True),
+        )
+        self.mu_p_layer = nn.Sequential(
+                nn.Linear(embed_dim, embed_dim//2),
+                nn.Dropout(attn_dropout),
+                nn.ELU(inplace=True),
+                nn.Linear(embed_dim//2, embed_dim),
+                nn.Dropout(attn_dropout),
+                nn.ReLU(inplace=True),
+                # nn.Linear(embed_dim, m_in),
+                # nn.Dropout(attn_dropout),
+                # nn.ELU(inplace=True),
+        )
         # self.update_gate = nn.Sequential(
         #     # nn.Linear(m_in*2, m_in),
         #     # nn.Dropout(attn_dropout),
@@ -74,8 +97,7 @@ class Net(nn.Module):
         mu_q = attn_output = (_alpha_) * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior, mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
 
         ## for a proper ELBO, the followings will be included:
-        # theta_t = 
-        theta_t = ?
+        theta_t = mu_q + sigma * 
         
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
         y_pred_logits = torch.diag(theta_t.squeeze(1) @ x.T).view(-1)
