@@ -70,7 +70,7 @@ class Net(nn.Module):
         ## TODO: debug only
         # attn_output = F.tanh(attn_output) * 0.5 + F.tanh(self_model) * 0.5
         update_probab = self.update_gate #self.update_gate(torch.cat([attn_output, self_model], -1))
-        attn_output = attn_output * (update_probab) + self_model * (1 - update_probab)
+        attn_output = attn_output * (update_probab) + self_model * (1 - update_probab) ## the mean of the approximate posterior, mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
 
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
         y_pred_logits = torch.diag(attn_output.squeeze(1) @ x.T).view(-1)
