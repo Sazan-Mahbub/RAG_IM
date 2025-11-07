@@ -86,7 +86,7 @@ class Net(nn.Module):
             query = (query + self.bottleneck[b_idx](attn_output)) / 2   # NOTE: (N x 1 x E)
 
         mu_p = self.mu_p_head(query)   # NOTE: (N x 1 x m_in) ## the "mean of learned prior gaussian"
-        LogSigma2_p = self.LogSigma2_p_head(query)   # NOTE: (N x 1 x m_in) ## the "log(Sigma^2) of learned prior gaussian"
+        LogSigma2_q = LogSigma2_p = self.LogSigma2_p_head(query)   # NOTE: (N x 1 x m_in) ## the "log(Sigma^2) of learned prior gaussian"
         Sigma_q = Sigma_p = torch.exp(0.5 * LogSigma2_p) # (N x 1 x m_in)  prior std (diagonal) of learned prior gaussian
         
         # _alpha_ = self.update_gate             # scalar in [0,1]
