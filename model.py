@@ -34,28 +34,24 @@ class Net(nn.Module):
                 # nn.ELU(inplace=True),
             ) for _ in range(num_blocks)
         ])
-        
-        self.mu_p_layer = nn.Sequential(
+        self.mu_p_head = nn.Sequential(
                 nn.Linear(embed_dim, embed_dim//2),
                 nn.Dropout(attn_dropout),
                 nn.ELU(inplace=True),
                 nn.Linear(embed_dim//2, embed_dim),
                 nn.Dropout(attn_dropout),
                 nn.ELU(inplace=True),
-                # nn.Linear(embed_dim, m_in),
-                # nn.Dropout(attn_dropout),
-                # nn.ELU(inplace=True),
+                nn.Linear(embed_dim, m_in)
         )
-        self.mu_p_layer = nn.Sequential(
+        self.LogSigma2_p_head = nn.Sequential(
                 nn.Linear(embed_dim, embed_dim//2),
                 nn.Dropout(attn_dropout),
                 nn.ELU(inplace=True),
                 nn.Linear(embed_dim//2, embed_dim),
                 nn.Dropout(attn_dropout),
-                nn.ReLU(inplace=True),
-                # nn.Linear(embed_dim, m_in),
-                # nn.Dropout(attn_dropout),
-                # nn.ELU(inplace=True),
+                nn.ELU(inplace=True),
+                nn.Linear(embed_dim, m_in)
+                nn.ReLU(),
         )
         # self.update_gate = nn.Sequential(
         #     # nn.Linear(m_in*2, m_in),
@@ -64,8 +60,9 @@ class Net(nn.Module):
         #     nn.Linear(m_in*2, 1),
         #     nn.Sigmoid()
         # )
-        self.update_gate = torch.nn.Parameter(torch.tensor(0.5))
-        self.linear_out = nn.Linear(embed_dim, m_in)
+        # self.update_gate = torch.nn.Parameter(torch.tensor(0.5))
+        self.update_gate = torch.nn.Parameter(torch.full((m_in,), 0.5, dtype=torch.float32))
+        # self.linear_out = nn.Linear(embed_dim, m_in)
 
     def forward(self, c, x, y, self_model, nbr_models, nbr_embs):
         self_model = self_model.unsqueeze(1)
@@ -88,16 +85,17 @@ class Net(nn.Module):
             # attn_output = (attn_output + self_model) / 2
             query = (query + self.bottleneck[b_idx](attn_output)) / 2   # NOTE: (N x 1 x E)
 
-        attn_output = self.linear_out(attn_output)   # NOTE: (N x 1 x m_in)
-        mu_p = attn_output ## the "mean of learned prior"
+        mu_p = self.mu_p_head(query)   # NOTE: (N x 1 x m_in) ## the "mean of learned prior gaussian"
+        LogSigma2_p = self.LogSigma2_p_head(query)   # NOTE: (N x 1 x m_in) ## the "log(Sigma^2) of learned prior gaussian"
+        Sigma_p = torch.exp(0.5 * LogSigma2_p) # (N x 1 x m_in)  prior std (diagonal) of learned prior gaussian
+        
+        # _alpha_ = self.update_gate             # scalar in [0,1]
+        _alpha_ = self.update_gate.view(1, 1, -1) # vector in [0,1]
+        mu_q = _alpha_ * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior q(theta_t|.), mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
 
-        ## TODO: debug only
-        # attn_output = F.tanh(attn_output) * 0.5 + F.tanh(self_model) * 0.5
-        _alpha_ = self.update_gate #self.update_gate(torch.cat([attn_output, self_model], -1))
-        mu_q = attn_output = (_alpha_) * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior, mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
-
-        ## for a proper ELBO, the followings will be included:
-        theta_t = mu_q + sigma * 
+        ### ---- Reparameterization (VAE-style) ----
+        _eps_ = torch.randn_like(mu_q)         # ε ~ N(0, I) with same shape as mu_q
+        theta_t = mu_q + Sigma_p * _eps_       # sample from q(theta_t|...) = N(mu_q, Sigma_p^2)
         
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
         y_pred_logits = torch.diag(theta_t.squeeze(1) @ x.T).view(-1)
