@@ -87,7 +87,7 @@ class Net(nn.Module):
 
         mu_p = self.mu_p_head(query)   # NOTE: (N x 1 x m_in) ## the "mean of learned prior gaussian"
         LogSigma2_p = self.LogSigma2_p_head(query)   # NOTE: (N x 1 x m_in) ## the "log(Sigma^2) of learned prior gaussian"
-        Sigma_p = torch.exp(0.5 * LogSigma2_p) # (N x 1 x m_in)  prior std (diagonal) of learned prior gaussian
+        Sigma_q = Sigma_p = torch.exp(0.5 * LogSigma2_p) # (N x 1 x m_in)  prior std (diagonal) of learned prior gaussian
         
         # _alpha_ = self.update_gate             # scalar in [0,1]
         _alpha_ = self.update_gate.view(1, 1, -1) # vector in [0,1]
@@ -95,14 +95,19 @@ class Net(nn.Module):
 
         ### ---- Reparameterization (VAE-style) ----
         _eps_ = torch.randn_like(mu_q)         # ε ~ N(0, I) with same shape as mu_q
-        theta_t = mu_q + Sigma_p * _eps_       # sample from q(theta_t|...) = N(mu_q, Sigma_p^2)
+        theta_t = mu_q + Sigma_q * _eps_       # sample from q(theta_t|...) = N(mu_q, Sigma_q^2)
         
         # y_pred_logits = torch.bmm(attn_output, x.unsqueeze(-1)).view(-1)   # NOTE: (N x 1 x m_in) X (N x m_in x 1) => (N x 1 x 1) => (N)
         y_pred_logits = torch.diag(theta_t.squeeze(1) @ x.T).view(-1)
         y_pred = F.sigmoid(y_pred_logits)
-        loss = F.binary_cross_entropy(y_pred, y)
+        bce_loss = F.binary_cross_entropy(y_pred, y)
 
-        return y_pred, loss
+        # mu_p, mu_q, Sigma_p: (N, 1, m_in)
+        # KL(q(theta_t|.) || p(theta_t|.)) = 0.5 * sum((mu_q - mu_p)^2 / Sigma_p^2)
+        KL_theta = 0.5 * torch.sum(((mu_q - mu_p) ** 2) / (Sigma_p ** 2), dim=-1)  # sum over m_in
+        KL_theta = KL_theta.mean()  # average over batch if desired
+
+        return y_pred, bce_loss
 
 
 
