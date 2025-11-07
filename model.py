@@ -64,9 +64,9 @@ class Net(nn.Module):
         self.update_gate = torch.nn.Parameter(torch.full((m_in,), 0.5, dtype=torch.float32))
         # self.linear_out = nn.Linear(embed_dim, m_in)
 
-    def forward(self, c, x, y, self_model, nbr_models, nbr_embs, sample_theta_t, use_prior_for_theta):
-        assert sample_theta_t in {True, False}
-        assert use_prior_for_theta in {True, False}
+    def forward(self, c, x, y, self_model, nbr_models, nbr_embs, sample_theta_t, use_posterior_for_theta):
+        assert sample_theta_t in {True, False}  ## we are more interested in sample_theta_t=True
+        assert use_posterior_for_theta in {True, False}  ## set to False if the task is data scarse.
         self_model = self_model.unsqueeze(1)
         query = c.unsqueeze(1) #torch.cat([self_model, c], -1)  ## assumption: for a new task, we may not have a linear model, or we may have a very bad one
         key = torch.cat([nbr_models, nbr_embs], -1)  ## assumption: we will choose neighbors that have high confidense (probably saw more training samples!)
@@ -94,11 +94,11 @@ class Net(nn.Module):
         # _alpha_ = self.update_gate             # scalar in [0,1]
         _alpha_ = self.update_gate.view(1, 1, -1) # vector in [0,1]
 
-        if use_prior_for_theta:
-            mu_q = mu_p ## Note: use this if you want to sample theta_t from prior distribution. This is useful for data-scarse tasks, since the data-driven component theta^_t would be very bad for those and we'd want to avoid it.
+        if use_posterior_for_theta:
+            mu_q = _alpha_ * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior q(theta_t|.), mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)  
         else:
-            mu_q = _alpha_ * mu_p + (1 - _alpha_) * self_model ## the mean of the approximate posterior q(theta_t|.), mu_q = alpha * mu_p + (1 - alpha) * theta^_t (i.e.,  convext combination of the "mean of learned prior" and the tash-specific data-driven component (i.e., log-reg co-efficients) theta^_t that is trained only on tash-specific data D_t)
-
+            mu_q = mu_p ## Note: use this if you want to sample theta_t from prior distribution. This is useful for data-scarse tasks, since the data-driven component theta^_t would be very bad for those and we'd want to avoid it.
+        
         ### ---- Reparameterization (VAE-style) ----
         if sample_theta_t:
             _eps_ = torch.randn_like(mu_q)         # ε ~ N(0, I) with same shape as mu_q
