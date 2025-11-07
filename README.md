@@ -6,7 +6,7 @@ Implementation of our NeurIPS 2024 workshop paper [RAG-IM (Retrieval Augmented G
 ## Citation
 If you use any part of this repository, please cite: 
 ```
-@inproceedings{mahbubone,
+@inproceedings{mahbub_ragim,
   title={From one to zero: Rag-im adapts language models for interpretable zero-shot clinical predictions},
   author={Mahbub, Sazan and Ellington, Caleb and Alinejad, Sina and Wen, Kevin and Luo, Yingtao and Lengerich, Ben and Xing, Eric P},
   booktitle={NeurIPS 2024 workshop on Adaptive Foundation Models: Evolving AI for Personalized and Efficient Learning}
