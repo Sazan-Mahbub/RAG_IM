@@ -5,9 +5,9 @@
 - The completed preprint is currently available on arXiv as [Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare](https://arxiv.org/abs/2607.17508); the corresponding code will be released upon acceptance.
 
 ## Citation
-If you use any part of this repository, please cite: 
+If you use any part of this repository, please cite either 
 
-Non-archival workshop version:
+the non-archival workshop version:
 ```
 @inproceedings{mahbub_ragim,
   title={From one to zero: Rag-im adapts language models for interpretable zero-shot clinical predictions},
@@ -16,7 +16,7 @@ Non-archival workshop version:
 }
 ```
 
-Completed manuscript preprint:
+or, the completed manuscript preprint:
 ```
 @article{mahbub2026retrieval,
   title={Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare},
@@ -26,10 +26,11 @@ Completed manuscript preprint:
 }
 ```
 
+-------------------------------------------------
 
-# For experimentation with the workshop version (Legacy):
+### Workshop Version (Legacy):
 
-## Download raw data
+#### Download raw data
 Please download the MIMIC-IV dataset from the [official source](https://physionet.org/content/mimiciv/2.2/). The following files are required:
 - HOSP.procedures_icd.csv
 - HOSP.d_icd_procedures.csv
@@ -38,9 +39,9 @@ Please download the MIMIC-IV dataset from the [official source](https://physione
 - ED.diagnosis.csv
 - labevents.csv
 
-## Run the experiments (training and testing)
+#### Run the experiments (training and testing)
 > bash run_experiment.sh
 
-## Only test the already trained model
+#### Only test the already trained model
 > bash run_test_only.sh
 
