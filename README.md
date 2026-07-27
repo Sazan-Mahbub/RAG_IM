@@ -7,7 +7,7 @@
 
 ## Citation
 
-If you use any part of this repository, please cite the non-archival workshop version:
+If you use any part of this repository, please cite *EITHER* the non-archival workshop version:
 
 ```bibtex
 @inproceedings{mahbub2024ragim,
@@ -19,7 +19,7 @@ If you use any part of this repository, please cite the non-archival workshop ve
 }
 ```
 
-or the completed manuscript:
+*OR* the completed manuscript:
 
 ```bibtex
 @article{mahbub2026retrieval,
