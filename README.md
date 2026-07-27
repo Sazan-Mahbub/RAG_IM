@@ -1,15 +1,27 @@
-# _**CAUTION: The codebase is being actively modified.**_ 
+> [!WARNING]
+> This codebase is under active development and does not yet fully reflect the [completed manuscript](https://arxiv.org/abs/2607.17508).
 
-# RAG-IM
-Implementation of our NeurIPS 2024 workshop paper [RAG-IM (Retrieval Augmented Generation of Interpretable Models)](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)). 
+This repository currently contains the implementation of our NeurIPS '24 workshop paper, [RAG-IM: Retrieval-Augmented Generation of Interpretable Models](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)), the non-archival workshop version of this work. The completed preprint is available on arXiv as [Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare](https://arxiv.org/abs/2607.17508); the corresponding code will be released upon acceptance.
 
 ## Citation
 If you use any part of this repository, please cite: 
+
+Non-archival workshop version:
 ```
 @inproceedings{mahbub_ragim,
   title={From one to zero: Rag-im adapts language models for interpretable zero-shot clinical predictions},
   author={Mahbub, Sazan and Ellington, Caleb and Alinejad, Sina and Wen, Kevin and Luo, Yingtao and Lengerich, Ben and Xing, Eric P},
   booktitle={NeurIPS 2024 workshop on Adaptive Foundation Models: Evolving AI for Personalized and Efficient Learning}
+}
+```
+
+Completed manuscript preprint:
+```
+@article{mahbub2026retrieval,
+  title={Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare},
+  author={Mahbub, Sazan and Ellington, Caleb and Li, Zhiyuan and Yang, Yixin and Kundu, Souvik and Lengerich, Ben and Xing, Eric P},
+  journal={arXiv preprint arXiv:2607.17508},
+  year={2026}
 }
 ```
 
