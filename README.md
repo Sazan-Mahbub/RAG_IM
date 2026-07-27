@@ -27,6 +27,7 @@ Completed manuscript preprint:
 ```
 
 
+# For experimentation with the workshop version (Legacy):
 
 ## Download raw data
 Please download the MIMIC-IV dataset from the [official source](https://physionet.org/content/mimiciv/2.2/). The following files are required:
