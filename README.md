@@ -5,24 +5,27 @@
 - The completed preprint is currently available on arXiv as [Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare](https://arxiv.org/abs/2607.17508); the corresponding code will be released upon acceptance.
 
 ## Citation
-If you use any part of this repository, please cite either 
 
-the non-archival workshop version:
-```
-@inproceedings{mahbub_ragim,
-  title={From one to zero: Rag-im adapts language models for interpretable zero-shot clinical predictions},
-  author={Mahbub, Sazan and Ellington, Caleb and Alinejad, Sina and Wen, Kevin and Luo, Yingtao and Lengerich, Ben and Xing, Eric P},
-  booktitle={NeurIPS 2024 workshop on Adaptive Foundation Models: Evolving AI for Personalized and Efficient Learning}
+If you use any part of this repository, please cite the completed manuscript:
+
+```bibtex
+@article{mahbub2026retrieval,
+  title={Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare},
+  author={Mahbub, Sazan and Ellington, Caleb and Li, Zhiyuan and Yang, Yixin and Kundu, Souvik and Lengerich, Ben and Xing, Eric P.},
+  journal={arXiv preprint arXiv:2607.17508},
+  year={2026}
 }
 ```
 
-or, the completed manuscript preprint:
-```
-@article{mahbub2026retrieval,
-  title={Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare},
-  author={Mahbub, Sazan and Ellington, Caleb and Li, Zhiyuan and Yang, Yixin and Kundu, Souvik and Lengerich, Ben and Xing, Eric P},
-  journal={arXiv preprint arXiv:2607.17508},
-  year={2026}
+or the earlier non-archival workshop version:
+
+```bibtex
+@inproceedings{mahbub2024ragim,
+  title={From One to Zero: {RAG-IM} Adapts Language Models for Interpretable Zero-Shot Clinical Predictions},
+  author={Mahbub, Sazan and Ellington, Caleb and Alinejad, Sina and Wen, Kevin and Luo, Yingtao and Lengerich, Ben and Xing, Eric P.},
+  booktitle={NeurIPS 2024 Workshop on Adaptive Foundation Models: Evolving AI for Personalized and Efficient Learning},
+  year={2024},
+  url={https://openreview.net/forum?id=N4JhWiIUtg}
 }
 ```
 
