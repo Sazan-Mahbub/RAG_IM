@@ -1,7 +1,8 @@
 > [!WARNING]
 > This codebase is under active development and does not yet fully reflect the [completed manuscript](https://arxiv.org/abs/2607.17508).
 
-This repository currently contains the implementation of our NeurIPS '24 workshop paper, [RAG-IM: Retrieval-Augmented Generation of Interpretable Models](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)), the non-archival workshop version of this work. The completed preprint is currently available on arXiv as [Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare](https://arxiv.org/abs/2607.17508); the corresponding code will be released upon acceptance.
+- This repository currently contains the implementation of our NeurIPS '24 workshop paper, [RAG-IM: Retrieval-Augmented Generation of Interpretable Models](https://openreview.net/forum?id=N4JhWiIUtg&referrer=%5Bthe%20profile%20of%20Sazan%20Mahbub%5D(%2Fprofile%3Fid%3D~Sazan_Mahbub1)), the non-archival workshop version of this work. 
+- The completed preprint is currently available on arXiv as [Retrieval-Augmented Interpretable Learning: Towards Task-Specific Zero-Shot Models in Healthcare](https://arxiv.org/abs/2607.17508); the corresponding code will be released upon acceptance.
 
 ## Citation
 If you use any part of this repository, please cite: 
