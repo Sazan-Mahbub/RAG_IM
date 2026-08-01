@@ -1,3 +1,5 @@
+## NOTE: *RAG-IM* is the legacy name for the preliminary work of this project, it has been *renamed to RAIL* in our completed [preprint manuscript](https://arxiv.org/abs/2607.17508).
+
 > [!WARNING]
 > This codebase is under active development and does not yet fully reflect the [completed manuscript](https://arxiv.org/abs/2607.17508).
 
